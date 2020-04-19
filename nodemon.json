@@ -1,0 +1,8 @@
+{
+  "env": {
+    "DB_USER": "gfrancesca",
+    "DB_PASSWORD": "3yPADNRkkIMy7yEE",
+    "DB_NAME": "more-app",
+    "JWT_KEY": "sdjlfl_dfjjp.jroteof"
+  }
+}

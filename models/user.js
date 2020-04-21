@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minlength: 6 },
   image: { type: String, required: false },
-  transactions: [{type: mongoose.Types.ObjectId, required: true, ref: 'Transaction'}] // this is an array because relation user:transaction is 1:n
+  transactions: [{type: mongoose.Types.ObjectId, required: true, ref: 'Transaction'}], // this is an array because relation user:transaction is 1:n
+  savings: [{type: mongoose.Types.ObjectId, required: true, ref: 'Savings'}]
 })
 
 userSchema.plugin(uniqueValidator)

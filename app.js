@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 
 const transactionsRoutes = require('./routes/transactions') // this is a middleware now
 const usersRoutes = require('./routes/users')
-const savingsRoutes = require('./routes/savings')
+const settingsRoutes = require('./routes/settings')
 
 const app = express()
 
@@ -22,7 +22,7 @@ app.use('/uploads/images', express.static(path.join('uploads', 'images')))
 
 app.use('/api/transactions', transactionsRoutes)
 app.use('/api/users', usersRoutes)
-app.use('/api/savings', savingsRoutes)
+app.use('/api/settings', settingsRoutes)
 
 /** HANDLING ERRORS FOR UNSUPPORTED ROUTES */
 // This middleware is supposed to run only if you have some requests which didn't have a response before

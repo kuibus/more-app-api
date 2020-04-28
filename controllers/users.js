@@ -81,14 +81,16 @@ const signup = async (req, res, next) => {
     password: hashedPassword,
     username: email,
     image: 'uploads/images/plc_avatar.jpg',
-    transactions: []
+    initialSavings: 0,
+    transactions: [],
+    savings: []
   })
 
   try {
     await createdUser.save()
   } catch (err) {
     const error = new HttpError(
-      `Signing up failed. Please try again`, 
+      `Something went wrong while signing up. Please try again.`, 
       500
     )
     return next(error)

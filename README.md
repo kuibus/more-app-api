@@ -13,4 +13,4 @@ In order to start the application, you will have to:
   npm start
 ```
 
-This will start the Node.js web server at the specified host and port 5000
+This will start the Node.js web server at the specified host and port 5000.

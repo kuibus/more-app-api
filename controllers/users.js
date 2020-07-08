@@ -1,6 +1,8 @@
+const mongoose = require('mongoose')
 const { validationResult } = require('express-validator')
 const HttpError = require('../models/http-error')
 const User = require('../models/user')
+const Savings = require('../models/savings')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -81,13 +83,23 @@ const signup = async (req, res, next) => {
     password: hashedPassword,
     username: email,
     image: 'uploads/images/plc_avatar.jpg',
-    initialSavings: 0,
-    transactions: [],
-    savings: []
+    transactions: []
+  })
+
+  const createdSavings = new Savings({
+    expected: 0,
+    actual: 0,
+    month: new Date().getMonth(),
+    creator: createdUser.id
   })
 
   try {
-    await createdUser.save()
+    const sess = await mongoose.startSession()
+    sess.startTransaction()
+    await createdSavings.save({ session: sess })
+    createdUser.savings.push(createdSavings)
+    await createdUser.save({ session: sess })
+    await sess.commitTransaction()
   } catch (err) {
     const error = new HttpError(
       `Something went wrong while signing up. Please try again.`, 

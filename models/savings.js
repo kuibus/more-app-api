@@ -2,9 +2,9 @@
 const mongoose = require('mongoose')
 
 const savingsSchema = new mongoose.Schema({
-  expected: { type: Number, default: 0 },
+  expected: { type: Number, required: true },
   actual: { type: Number, required: true },
-  month: { type: Date, required: true },
+  month: Date,
   creator: {type: mongoose.Types.ObjectId, required: true, ref: 'User'},
 })
 
